@@ -22,6 +22,6 @@ export class CoursesService {
   }
 
   save(record: Course){
-   return this.httpClient.post<Course>(this.API, record).pipe(first());
+   return this.httpClient.post<Course>(this.API, record);
   }
 }
