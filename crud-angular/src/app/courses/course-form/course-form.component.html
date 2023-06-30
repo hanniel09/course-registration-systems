@@ -12,13 +12,11 @@
 
       <mat-form-field class="full-width">
         <mat-label>Categoria</mat-label>
-        <mat-select>
-          <mat-option value="option1">Option 1</mat-option>
-          <mat-option value="option2" disabled>Option 2 (disabled)</mat-option>
-          <mat-option value="option3">Option 3</mat-option>
+        <mat-select formControlName="category">
+          <mat-option value="null"></mat-option>
+          <mat-option value="Front-end">Front-end</mat-option>
+          <mat-option value="Back-end">Back-end</mat-option>
         </mat-select>
-        <mat-label>Categoria</mat-label>
-        <input matInput formControlName="category">
       </mat-form-field>
     </form>
   </mat-card-content>
