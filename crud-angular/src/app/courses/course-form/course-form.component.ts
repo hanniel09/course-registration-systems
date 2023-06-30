@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
+import { CoursesService } from '../services/courses.service';
+
 @Component({
   selector: 'app-course-form',
   templateUrl: './course-form.component.html',
@@ -10,7 +12,8 @@ export class CourseFormComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder){
+  constructor(private formBuilder: FormBuilder,
+    private service: CoursesService){
     this.form = this.formBuilder.group({
       name: [null],
       category: [null]
@@ -21,10 +24,10 @@ export class CourseFormComponent implements OnInit {
 
   }
   onSubmit(){
-    console.log("salvo")
+    this.service.save(this.form.value);
   }
 
   onCancel(){
-    console.log("cancelado")
+    console.log("onCancel")
   }
 }
