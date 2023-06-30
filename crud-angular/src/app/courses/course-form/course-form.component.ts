@@ -21,10 +21,10 @@ export class CourseFormComponent implements OnInit {
 
   }
   onSubmit(){
-    console.log("")
+    console.log("salvo")
   }
 
   onCancel(){
-
+    console.log("cancelado")
   }
 }
