@@ -1,9 +1,8 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, NonNullableFormBuilder } from '@angular/forms';
+import { NonNullableFormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { Course } from '../models/course';
 import { CoursesService } from '../services/courses.service';
 
 @Component({
@@ -25,7 +24,7 @@ export class CourseFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    /* TODO document why this method 'ngOnInit' is empty */
   }
   onSubmit(){
     this.service.save(this.form.value).subscribe({

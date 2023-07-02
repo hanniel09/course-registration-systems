@@ -1,0 +1,13 @@
+.mat-table {
+ overflow: auto;
+ max-height: 600px;
+}
+
+.action-column {
+  justify-content: center;
+  flex: 0 95px;
+}
+
+.action-column-header {
+  flex: 0 90px;
+}
