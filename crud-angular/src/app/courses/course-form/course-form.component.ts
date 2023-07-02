@@ -1,10 +1,10 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, NonNullableFormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { CoursesService } from '../services/courses.service';
 import { Course } from '../models/course';
-import { Location } from '@angular/common';
+import { CoursesService } from '../services/courses.service';
 
 @Component({
   selector: 'app-course-form',
@@ -13,23 +13,22 @@ import { Location } from '@angular/common';
 })
 export class CourseFormComponent implements OnInit {
 
-  form: FormGroup;
+  form = this.formBuilder.group({
+    name: [''],
+    category: ['']
+  });
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(private formBuilder: NonNullableFormBuilder,
     private service: CoursesService,
     private snackBar: MatSnackBar,
     private location: Location){
-    this.form = this.formBuilder.group({
-      name: [null],
-      category: [null]
-    })
   }
 
   ngOnInit(): void {
 
   }
   onSubmit(){
-    this.service.save(this.form.value as Course).subscribe({
+    this.service.save(this.form.value).subscribe({
       next: (onSucess) => this.onSucess(),
       error: () =>{
         this.onError();
