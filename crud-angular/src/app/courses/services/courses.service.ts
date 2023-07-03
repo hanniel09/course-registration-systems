@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Course } from '../models/course';
 import { HttpClient } from '@angular/common/http';
-import { delay, first, tap } from 'rxjs';
+import { first, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
