@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Course } from '../models/course';
 import { HttpClient } from '@angular/common/http';
-import { first, tap } from 'rxjs';
+import { first } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -37,7 +37,7 @@ export class CoursesService {
   }
 
   private update(record: Partial<Course>){
-    return this.httpClient.post<Course>(`${this.API}/${record._id}`, record).pipe(first());
+    return this.httpClient.put<Course>(`${this.API}/${record._id}`, record).pipe(first());
   }
 
 }
