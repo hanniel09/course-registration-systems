@@ -16,8 +16,9 @@ export class CourseFormComponent implements OnInit {
 
   form = this.formBuilder.group({
     _id: [''],
-    name: ['', [
-      Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
+    name: ['', [ Validators.required,
+      Validators.minLength(5),
+      Validators.maxLength(100)]],
     category: ['', [Validators.required]]
   });
 
@@ -67,12 +68,12 @@ export class CourseFormComponent implements OnInit {
     }
 
     if(field?.hasError('minlength')){
-      const requiredLength: number = field.errors ? field.errors['minlength']['requiredlegth'] : 5;
+      const requiredLength: number = field.errors ? field.errors['minlength']['requiredLength'] : 5
       return `Tamanho mínimo precisa ser de ${requiredLength} caracteres.`;
     }
 
     if(field?.hasError('maxlength')){
-      const requiredLength: number = field.errors ? field.errors['maxlength']['requiredlegth'] : 200;
+      const requiredLength: number = field.errors ? field.errors['maxlength']['requiredLength'] : 200;
       return `Tamanho máximo excedido de ${requiredLength} caracteres.`;
     }
 
