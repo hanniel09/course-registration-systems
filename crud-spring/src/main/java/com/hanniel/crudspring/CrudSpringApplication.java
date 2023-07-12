@@ -31,6 +31,12 @@ public class CrudSpringApplication {
 			l.setYoutubeUrl("watch?v=N");
 			l.setCourse(c);
 			c.getLessons().add(l);
+
+			Lesson l1 = new Lesson();
+			l1.setName("Angular");
+			l1.setYoutubeUrl("watch?v=N");
+			l1.setCourse(c);
+			c.getLessons().add(l1);
 			
 
 			courseRepository.save(c);
