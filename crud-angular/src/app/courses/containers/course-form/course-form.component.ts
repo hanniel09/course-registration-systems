@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
+import { FormGroup, NonNullableFormBuilder, UntypedFormArray, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { CoursesService } from '../../services/courses.service';
@@ -59,6 +59,9 @@ export class CourseFormComponent implements OnInit {
       )
   }
 
+  getLessonsFormArray(){
+    return (<UntypedFormArray>this.form.get('lessons')).controls;
+  }
   onSubmit(){
     this.service.save(this.form.value).subscribe({
       next: (onSucess) => this.onSucess(),
