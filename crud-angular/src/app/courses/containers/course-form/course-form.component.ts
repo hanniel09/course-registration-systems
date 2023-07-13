@@ -53,8 +53,12 @@ export class CourseFormComponent implements OnInit {
       return this.formBuilder.group(
         {
           _id: [lesson._id],
-          name: [lesson.name],
-          youtubeUrl: [lesson.youtubeUrl]
+          name: [lesson.name , [ Validators.required,
+            Validators.minLength(5),
+            Validators.maxLength(100)]],
+          youtubeUrl: [lesson.youtubeUrl, [ Validators.required,
+            Validators.minLength(10),
+            Validators.maxLength(11)]]
         }
       )
   }
@@ -72,12 +76,16 @@ export class CourseFormComponent implements OnInit {
   }
 
   onSubmit(){
+    if(this.form.valid){
     this.service.save(this.form.value).subscribe({
       next: (onSucess) => this.onSucess(),
       error: () =>{
         this.onError();
       },
      });
+    } else {
+      alert('form invalid')
+    }
   }
 
   onCancel(){
@@ -111,5 +119,10 @@ export class CourseFormComponent implements OnInit {
     }
 
     return 'campo Inválido';
+  }
+
+  isFormArrayRequired(){
+    const lessons = this.form.get('lessons') as UntypedFormArray;
+    return !lessons.valid && lessons.hasError('required') && lessons.touched;
   }
 }
