@@ -32,7 +32,7 @@ export class CourseFormComponent implements OnInit {
       Validators.minLength(5),
       Validators.maxLength(100)]],
       category: [course.category, [Validators.required]],
-      lessons: this.formBuilder.array(this.retrieveLesson(course))
+      lessons: this.formBuilder.array(this.retrieveLesson(course), Validators.required)
       });
       console.log(this.form);
       console.log(this.form.value);
