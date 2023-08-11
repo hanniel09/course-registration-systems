@@ -7,6 +7,7 @@ import { CoursesService } from '../../services/courses.service';
 import { ActivatedRoute } from '@angular/router';
 import { Course } from '../../models/course';
 import { Lesson } from '../../models/lesson';
+import { FormUtilsService } from 'src/app/shared/form/form-utils.service';
 
 @Component({
   selector: 'app-course-form',
@@ -21,7 +22,8 @@ export class CourseFormComponent implements OnInit {
     private service: CoursesService,
     private snackBar: MatSnackBar,
     private location: Location,
-    private route: ActivatedRoute){
+    private route: ActivatedRoute,
+    public formUtils: FormUtilsService){
   }
 
   ngOnInit(): void {
@@ -121,8 +123,4 @@ export class CourseFormComponent implements OnInit {
     return 'campo Inválido';
   }
 
-  isFormArrayRequired(){
-    const lessons = this.form.get('lessons') as UntypedFormArray;
-    return !lessons.valid && lessons.hasError('required') && lessons.touched;
-  }
 }

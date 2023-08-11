@@ -9,7 +9,7 @@
       <mat-form-field class="full-width">
         <mat-label>Nome</mat-label>
         <input matInput formControlName="name" #name>
-        <mat-hint align="end">{{ name.value.length }}/100</mat-hint>
+        <mat-hint align="end">{{ name.value.length || 0 }}/100</mat-hint>
         <mat-error *ngIf="form.get('name')?.invalid">{{
            getErrorMessage('name')
           }}</mat-error>
@@ -34,7 +34,9 @@
       </button>
     </mat-toolbar>
 
-    <mat-error *ngIf="isFormArrayRequired()" class="form-array-error">
+    <mat-error
+      *ngIf="formUtils.isFormArrayRequired(form, 'lessons')"
+      class="form-array-error">
       Adicione pelo menos uma aula
     </mat-error>
 
