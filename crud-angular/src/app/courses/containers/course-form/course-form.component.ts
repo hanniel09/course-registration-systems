@@ -36,8 +36,6 @@ export class CourseFormComponent implements OnInit {
       category: [course.category, [Validators.required]],
       lessons: this.formBuilder.array(this.retrieveLesson(course), Validators.required)
       });
-      console.log(this.form);
-      console.log(this.form.value);
     }
 
 
@@ -86,7 +84,7 @@ export class CourseFormComponent implements OnInit {
       },
      });
     } else {
-      alert('form invalid')
+      this.formUtils.validateAllFormFields(this.form);
     }
   }
 
@@ -102,25 +100,4 @@ export class CourseFormComponent implements OnInit {
   private onError(){
     this.snackBar.open('Error ao salvar curso.', '', { duration: 5000});
   }
-
-  getErrorMessage(fieldName: string){
-    const field = this.form.get(fieldName);
-
-    if(field?.hasError('required')){
-      return 'Campo obrigatório';
-    }
-
-    if(field?.hasError('minlength')){
-      const requiredLength: number = field.errors ? field.errors['minlength']['requiredLength'] : 5
-      return `Tamanho mínimo precisa ser de ${requiredLength} caracteres.`;
-    }
-
-    if(field?.hasError('maxlength')){
-      const requiredLength: number = field.errors ? field.errors['maxlength']['requiredLength'] : 200;
-      return `Tamanho máximo excedido de ${requiredLength} caracteres.`;
-    }
-
-    return 'campo Inválido';
-  }
-
 }
