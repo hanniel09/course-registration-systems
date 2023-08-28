@@ -9,6 +9,7 @@ import org.springframework.validation.annotation.Validated;
 import com.hanniel.crudspring.dto.CourseDTO;
 import com.hanniel.crudspring.dto.mapper.CourseMapper;
 import com.hanniel.crudspring.exception.RecordNotFoundException;
+import com.hanniel.crudspring.model.Course;
 import com.hanniel.crudspring.repository.CourseRepository;
 
 import jakarta.validation.Valid;
@@ -42,12 +43,15 @@ public class CourseService {
       return courseMapper.toDTO(courseRepository.save(courseMapper.toEntity(course)));
     }
 
-    public CourseDTO update(@NotNull @Positive Long id,  @Valid @NotNull CourseDTO course) {
+    public CourseDTO update(@NotNull @Positive Long id,  @Valid @NotNull CourseDTO courseDTO) {
       return courseRepository.findById(id) 
                 .map(recordFound -> {
-                  recordFound.setName(course.name());
+                  Course course = courseMapper.toEntity(courseDTO);
+                  recordFound.setName(courseDTO.name());
                   recordFound.setCategory(this.courseMapper
-                  .convertCategoryValue(course.category()));
+                  .convertCategoryValue(courseDTO.category()));
+                  recordFound.getLessons().clear();
+                  course.getLessons().forEach(recordFound.getLessons()::add);
                   return courseMapper.toDTO(courseRepository.save(recordFound));
                 }).orElseThrow(() -> new RecordNotFoundException(id));
       }
