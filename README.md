@@ -8,7 +8,7 @@ The project boils down to a course management service, where you can create cour
 
 #### Get all course
 
-```http
+```SHELL
   GET /api/courses
 ```
 
@@ -18,7 +18,7 @@ The project boils down to a course management service, where you can create cour
 
 #### Get course
 
-```http
+```SHELL
   GET /api/courses/{id}
 ```
 
@@ -28,7 +28,7 @@ The project boils down to a course management service, where you can create cour
 
 #### Crate course
 
-```http
+```SHELL
   POST /api/courses
 ```
 
@@ -38,7 +38,7 @@ The project boils down to a course management service, where you can create cour
 
 #### Update course
 
-```http
+```SHELL
   PUT /api/courses/{id}
 ```
 
@@ -48,7 +48,7 @@ The project boils down to a course management service, where you can create cour
 
 #### Delete course
 
-```http
+```SHELL
   DELETE /api/courses/{id}
 ```
 
