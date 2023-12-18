@@ -3,6 +3,11 @@ package com.hanniel.crudspring.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.hanniel.crudspring.dto.CoursePageDTO;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.PositiveOrZero;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -27,12 +32,18 @@ public class CourseService {
         this.courseMapper = courseMapper;
     }
 
-    public List<CourseDTO> list(){
-      return courseRepository.findAll()
-              .stream()
-              .map(courseMapper::toDTO)
-              .collect(Collectors.toList());
+    public CoursePageDTO list(@PositiveOrZero int page,@Positive @Max(100) int pageSize){
+        Page<Course> pageCourse = courseRepository.findAll(PageRequest.of(page, pageSize));
+        List<CourseDTO> courses = pageCourse.get().map(courseMapper::toDTO).toList();
+        return new CoursePageDTO(courses, pageCourse.getTotalElements(), pageCourse.getTotalPages());
     }
+
+//    public List<CourseDTO> list(){
+//      return courseRepository.findAll()
+//              .stream()
+//              .map(courseMapper::toDTO)
+//              .collect(Collectors.toList());
+//    }
 
     public CourseDTO findById(@NotNull @Positive Long id){
       return courseRepository.findById(id).map(courseMapper::toDTO)
