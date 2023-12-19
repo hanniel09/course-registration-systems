@@ -9,6 +9,7 @@ import com.hanniel.crudspring.enums.Category;
 import com.hanniel.crudspring.model.Course;
 import com.hanniel.crudspring.model.Lesson;
 import com.hanniel.crudspring.repository.CourseRepository;
+import org.springframework.context.annotation.Profile;
 
 @SpringBootApplication
 public class CrudSpringApplication {
