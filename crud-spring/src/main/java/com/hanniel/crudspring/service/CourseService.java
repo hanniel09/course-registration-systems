@@ -38,13 +38,6 @@ public class CourseService {
         return new CoursePageDTO(courses, pageCourse.getTotalElements(), pageCourse.getTotalPages());
     }
 
-//    public List<CourseDTO> list(){
-//      return courseRepository.findAll()
-//              .stream()
-//              .map(courseMapper::toDTO)
-//              .collect(Collectors.toList());
-//    }
-
     public CourseDTO findById(@NotNull @Positive Long id){
       return courseRepository.findById(id).map(courseMapper::toDTO)
         .orElseThrow(() -> new RecordNotFoundException(id));
