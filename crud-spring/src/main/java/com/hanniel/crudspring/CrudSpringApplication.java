@@ -27,7 +27,7 @@ public class CrudSpringApplication {
 			for(int i = 0; i < 20; i++) {
 
 				Course c = new Course();
-				c.setName("Angular com Spring" + i);
+				c.setName("Angular com Spring " + i);
 				c.setCategory(Category.FRONT_END);
 
 				Lesson l = new Lesson();
