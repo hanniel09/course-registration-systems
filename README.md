@@ -61,5 +61,5 @@ The project boils down to a course management service, where you can create cour
 
 **Client:** Angular, Angular Material, TypeScript
 
-**Server:** Java, Spring Boot, H2 Database
+**Server:** Java, Spring Boot, Mysql, Docker
 
