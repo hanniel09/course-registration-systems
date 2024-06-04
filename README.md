@@ -1,5 +1,5 @@
 
-# crud-angular-spring
+# course-registration-systems
 
 
 The project boils down to a course management service, where you can create courses and associate them with your definitive classes.
